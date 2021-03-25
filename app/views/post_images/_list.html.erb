@@ -7,6 +7,9 @@
   <p>ショップ名：<%= post_image.title %></p>
   <p>説明：<%= post_image.share_comment %></p>
   <p>ユーザーネーム：<%= post_image.user.name %></p>
+  <% post_image.tags.each do |tag| %>
+    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag) %></p>
+  <% end %>
 </div>
 <% end %>
 <%= paginate post_images %>

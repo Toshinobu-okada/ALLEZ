@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_092228) do
+ActiveRecord::Schema.define(version: 2021_03_25_090019) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 2021_03_16_092228) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tagmaps", force: :cascade do |t|
+    t.integer "post_image_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_image_id"], name: "index_tagmaps_on_post_image_id"
+    t.index ["tag_id"], name: "index_tagmaps_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

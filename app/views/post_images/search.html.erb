@@ -1,0 +1,81 @@
+<div class="tab_wrap">
+	<input id="tab1" type="radio" name="tab_btn" checked>
+	<input id="tab2" type="radio" name="tab_btn">
+	<input id="tab3" type="radio" name="tab_btn">
+
+	<div class="tab_area">
+		<label class="tab_label" for="tab1">検索結果一覧</label>
+		<label class="tab_label" for="tab2">最新ツイート</label>
+		<label class="tab_label" for="tab3">話題のツイート</label>
+	</div>
+	<div class="panel_area">
+		<div id="panel1" class="tab_panel">
+			<h1>検索結果一覧</h1>
+			<% @searched_post_images.each do |searched_post_image| %>
+			  <div>
+			  	<%= link_to post_image_path(searched_post_image.id) do %>
+			  		<%= attachment_image_tag searched_post_image, :image %>
+			  	<% end %>
+			  	<p>投稿ユーザー画像：<%= attachment_image_tag searched_post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+			  	<p>ショップ名：<%= searched_post_image.title %></p>
+				  <p>説明：<%= searched_post_image.share_comment %></p>
+				  <p>ユーザーネーム：<%= searched_post_image.user.name %></p>
+				  <% searched_post_image.tags.each do |tag| %>
+				    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag_name) %></p>
+				  <% end %>
+				</div>
+			<% end %>
+			<%= paginate @searched_post_images %>
+		</div>
+
+		<div id="panel2" class="tab_panel">
+			<h1>最新ツイート</h1>
+			<% @post_image_order_by_created.each do |post_image_order_by_created| %>
+			<div>
+			  <%= link_to post_image_path(post_image_order_by_created.id) do %>
+			    <%= attachment_image_tag post_image_order_by_created, :image %>
+			  <% end %>
+			  <p>投稿ユーザー画像：<%= attachment_image_tag post_image_order_by_created.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+			  <p>ショップ名：<%= post_image_order_by_created.title %></p>
+			  <p>説明：<%= post_image_order_by_created.share_comment %></p>
+			  <p>ユーザーネーム：<%= post_image_order_by_created.user.name %></p>
+			  <% post_image_order_by_created.tags.each do |tag| %>
+			    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag_name) %></p>
+			  <% end %>
+			</div>
+			<% end %>
+			<%= paginate @post_image_order_by_created %>
+		</div>
+
+		<div id="panel3" class="tab_panel">
+			<h1>話題のツイート</h1>
+			<% @post_image_order_by_like_count.each do |post_image_order_by_like_count| %>
+			<div>
+			  <%= link_to post_image_path(post_image_order_by_like_count.id) do %>
+			    <%= attachment_image_tag post_image_order_by_like_count, :image %>
+			  <% end %>
+			  <p>投稿ユーザー画像：<%= attachment_image_tag post_image_order_by_like_count.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+			  <p>ショップ名：<%= post_image_order_by_like_count.title %></p>
+			  <p>説明：<%= post_image_order_by_like_count.share_comment %></p>
+			  <p>ユーザーネーム：<%= post_image_order_by_like_count.user.name %></p>
+				  <% post_image_order_by_like_count.tags.each do |tag| %>
+				    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag_name) %></p>
+				  <% end %>
+			</div>
+			<% end %>
+			<%= paginate @post_image_order_by_like_count %>
+		</div>
+
+	</div>
+</div>
+
+<script>
+	$(".tab_label").on("click",function(){
+		console.log($(this))
+	var $th = $(this).index();
+	$(".tab_label").removeClass("active");
+	$(".tab_panel").removeClass("active");
+	$(this).addClass("active");
+	$(".tab_panel").eq($th).addClass("active");
+	});
+</script>
