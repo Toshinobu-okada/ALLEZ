@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
 
   def top
-  end
-
-  def index
+    @post_images = PostImage.page(params[:page]).reverse_order
   end
 
 end

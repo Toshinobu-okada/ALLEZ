@@ -1,0 +1,27 @@
+<div class="favorite">
+  <% if post_image.favorited_by?(current_user) %>
+  <div class="favorite-btn">
+    <%= link_to post_image_favorites_path(post_image), method: :delete, remote: true do %>
+      <%= button_tag(class: "btn") do %>
+        <i class="fas fa-heart fa-lg d-inline-block", style="color: #ff3355"></i>
+        <span class="mx-2 d-inline-block font-weight-bold">いいね</span>
+      <% end %>
+    <% end %>
+  </div>
+  <p>
+    <%= post_image.favorites.count %>人がいいねをしました
+  </p>
+  <% else %>
+  <div class="favorite-btn">
+    <%= link_to post_image_favorites_path(post_image), method: :post, remote: true do %>
+      <%= button_tag(class: "btn") do %>
+        <i class="far fa-heart fa-lg", style="color: #ff3355"></i>
+        <span class="mx-2 d-inline-block font-weight-bold">いいね</span>
+      <% end %>
+    <% end %>
+  </div>
+  <p>
+    <%= post_image.favorites.count %>人がいいねをしました
+  </p>
+  <% end %>
+</div>
