@@ -1,36 +1,32 @@
 <header>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <div class="collapse navbar-collapse mx-ou">
-        <div class="form-inline">
-          <%= form_tag("/search",:method => 'get') do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag 'Search' %>
-          <% end %>
+      <div class="collapse navbar-collapse mx-ou d-flex">
+        <a class="navbar-brand img_wrap" href="/"><%= image_tag asset_path('logo1.png'), :size => '200x50' %></a>
+        <div class="form-inline flex-grow-1">
+          <input id='search-btn' type='checkbox'/>
+          <label for='search-btn'></label>
+          <form action="/search" method="get">
+            <input id='search-bar' type='txet' name='search' placeholder='Search...'/>
+          </form>
         </div>
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to '投稿一覧', post_images_path %>
+              <%= link_to '投稿一覧', post_images_path, class:"edit-link" %>
             </li>
             <li class="nav-item">
               <%= link_to '投稿フォーム', new_post_image_path %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-light" %>
             </li>
             <li class="nav-item">
             <%= link_to 'マイページ', user_path(current_user.id) %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to '投稿一覧', post_images_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path %>
+              <%= link_to "ログイン", new_user_session_path, class:"btn" %>
             </li>
           <% end %>
         </ul>

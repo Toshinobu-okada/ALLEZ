@@ -21,7 +21,7 @@
 				  <p>説明：<%= searched_post_image.share_comment %></p>
 				  <p>ユーザーネーム：<%= searched_post_image.user.name %></p>
 				  <% searched_post_image.tags.each do |tag| %>
-				    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag_name) %></p>
+				    <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
 				  <% end %>
 				</div>
 			<% end %>
@@ -40,7 +40,7 @@
 			  <p>説明：<%= post_image_order_by_created.share_comment %></p>
 			  <p>ユーザーネーム：<%= post_image_order_by_created.user.name %></p>
 			  <% post_image_order_by_created.tags.each do |tag| %>
-			    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag_name) %></p>
+			    <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
 			  <% end %>
 			</div>
 			<% end %>
@@ -59,7 +59,7 @@
 			  <p>説明：<%= post_image_order_by_like_count.share_comment %></p>
 			  <p>ユーザーネーム：<%= post_image_order_by_like_count.user.name %></p>
 				  <% post_image_order_by_like_count.tags.each do |tag| %>
-				    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag_name) %></p>
+				    <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
 				  <% end %>
 			</div>
 			<% end %>

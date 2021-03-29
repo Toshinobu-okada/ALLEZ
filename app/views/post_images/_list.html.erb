@@ -1,15 +1,33 @@
-<% post_images.each do |post_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= attachment_image_tag post_image, :image %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-  <p>ショップ名：<%= post_image.title %></p>
-  <p>説明：<%= post_image.share_comment %></p>
-  <p>ユーザーネーム：<%= post_image.user.name %></p>
-  <% post_image.tags.each do |tag| %>
-    <p>タグ：<%= link_to tag.tag_name, search_path(search: tag) %></p>
-  <% end %>
+<%= paginate post_images %>
+<div class="card-deck">
+  <div class="card list-card">
+    <% post_images.each do |post_image| %>
+    <div>
+      <%= link_to post_image_path(post_image.id) do %>
+        <div　class="img card-img-top">
+          <%= attachment_image_tag post_image, :image %>
+        </div>
+      <% end %>
+      <div class="card-body">
+        <div class="d-block card-title">
+          <div class="d-inline-block">
+            <%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+          </div>
+          <div class="d-inline-block">
+            <%= post_image.user.name %>
+          </div>
+        </div>
+        <div class="d-block">
+          <p class="card-text"><%= post_image.share_comment %></p>
+        </div>
+        <div class="card-tag">
+          <% post_image.tags.each do |tag| %>
+            <p class="card-tag-link"><%= link_to tag.hash_tag, search_path(search: tag.hash_tag) %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
 <%= paginate post_images %>

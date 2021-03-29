@@ -31,6 +31,6 @@ class PostImage < ApplicationRecord
     end
   end
 
-  scope :search, -> (search) { joins(:user).where("OR users.name LIKE ?post_images.title LIKE ?  OR post_images.share_comment LIKE ? OR tags.tag_name LIKE", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%" ) }
-
+  scope :search, -> (search) { joins(:user, :tags).where("users.name LIKE ? OR post_images.title LIKE ? OR post_images.share_comment LIKE ? OR tags.tag_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", search.downcase.delete('#') ) }
+  scope :search_tag, -> (search) { joins(:tags).where("tags.tag_name LIKE ?", search.downcase.delete('#') ) }
 end

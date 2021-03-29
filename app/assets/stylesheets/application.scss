@@ -15,6 +15,8 @@
  */
 
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 // max-eidth
 
@@ -22,4 +24,42 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  .background {
+    background-image: image-url('GFVL2213esports_TP_V.png');
+    background-size: cover;
+}
+
+  background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+  background-blend-mode: multiply;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+header {
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+.edit-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.favorite-btn {
+  background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+  line-height: 42px;
+  color: #6d3701;
+  font-size: 14px;
+  display: inline-block;
+  padding: 0 10px;
+  border-radius: 100px;
+  font-weight: bold;
+}
+
+.card-deck {
+  .card{
+    width: 232px;
+  }
 }

@@ -8,23 +8,8 @@
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
   <% end %>
   <% if user_signed_in? %>
-
-    <% if @post_image.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-          ♥<%= @post_image.favorites.count %> いいね
-        <% end %>
-      </p>
-      <% else %>
-      <p>
-        <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-          ♡<%= @post_image.favorites.count %> いいね
-        <% end %>
-      </p>
-    <% end %>
-
-  <% else %>
-    <p><%= @post_image.favorites.count %>人がいいねしました。</p>
+    <div id="favorite-btn_<%= @post_image.id %>"
+    <%= render 'favorites/favorite-btn', post_image: @post_image %>
   <% end %>
 
 </div>
