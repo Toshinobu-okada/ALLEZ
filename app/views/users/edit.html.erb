@@ -5,7 +5,7 @@
       <%= form_with model:@user, local:true do |f| %>
         <h4>画像</h4>
         <div class="form-group justify-content-center">
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '40%' %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: asset_path("no_image.jpg"), size: '40%' %>
           <%= f.attachment_field :profile_image, class: 'form-control-file btn edit-link' %>
           <h2>↓</h2>
           <div class=""><img id="preview" style="width:40%;"></div>

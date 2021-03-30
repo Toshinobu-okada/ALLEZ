@@ -18,7 +18,7 @@
             <div class="card-title">
               <%= link_to user_path(post_image.user), class:"edit-link text-color-black" do %>
               <div class="d-inline-block">
-                <%= attachment_image_tag post_image.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40' %>
+                <%= attachment_image_tag post_image.user, :profile_image, :fill, 40, 40, fallback: asset_path("no_image.jpg"), size: '40x40' %>
               </div>
               <div class="d-inline-block font-weight-bold">
                 <%= post_image.user.name %>
@@ -26,7 +26,7 @@
               <% end %>
             </div>
             <div>
-              <p class="card-text", style="border: solid; border-radius:25px; padding: 5px; margin: 5px;"><%= post_image.share_comment%></p>
+              <p class="card-text", style="border: solid; border-radius:10px; padding: 5px; margin: 5px;"><%= post_image.share_comment%></p>
             </div>
             <div class="card-tag">
               <% post_image.tags.each do |tag| %>
