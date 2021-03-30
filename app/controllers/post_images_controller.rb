@@ -37,12 +37,12 @@ class PostImagesController < ApplicationController
 
   def search
     if params[:search] && params[:search].index("#") == 0
-      @searched_post_images = PostImage.search_tag(params[:search]).page(params[:page])
+      @searched_post_images = PostImage.search_tag(params[:search]).page(params[:page]).per(12)
     else
-      @searched_post_images = PostImage.search(params[:search]).page(params[:page])
+      @searched_post_images = PostImage.search(params[:search]).page(params[:page]).per(12)
     end
-    @post_image_order_by_created = @searched_post_images.order(created_at: "desc").page(params[:page])
-    @post_image_order_by_like_count = @searched_post_images.order(likes_count: "desc").page(params[:page])
+    @post_image_order_by_created = @searched_post_images.order(created_at: "desc").page(params[:page]).per(12)
+    @post_image_order_by_like_count = @searched_post_images.order(likes_count: "desc").page(params[:page]).per(12)
   end
 
    private

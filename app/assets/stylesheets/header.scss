@@ -112,9 +112,9 @@ $t: .65s;
 
 .nav-item {
   .btn{
-    width: 12.1rem;
+    width: auto;
     font-weight: bold;
-    background-color: #999999;
+    background-color: #4e454a;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -128,10 +128,12 @@ $t: .65s;
 .img_wrap{
   overflow: hidden;
 }
+
 .img_wrap img{
   cursor: pointer;
   transition-duration: 0.3s;
 }
+
 .img_wrap:hover img{
   opacity: 0.6;
   transition-duration: 0.3s;
