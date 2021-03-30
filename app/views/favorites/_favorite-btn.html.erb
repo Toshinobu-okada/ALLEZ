@@ -8,9 +8,9 @@
       <% end %>
     <% end %>
   </div>
-  <p>
-    <%= post_image.favorites.count %>人がいいねをしました
-  </p>
+  <div>
+    <%= post_image.likes_count %>人がいいねをしました
+  </div>
   <% else %>
   <div class="favorite-btn">
     <%= link_to post_image_favorites_path(post_image), method: :post, remote: true do %>
@@ -20,8 +20,8 @@
       <% end %>
     <% end %>
   </div>
-  <p>
-    <%= post_image.favorites.count %>人がいいねをしました
-  </p>
+  <div>
+    <%= post_image.likes_count %>人がいいねをしました
+  </div>
   <% end %>
 </div>

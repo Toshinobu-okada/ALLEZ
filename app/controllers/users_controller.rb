@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images.page(params[:page]).reverse_order
+    @post_images = @user.post_images.page(params[:page]).per(12).reverse_order
     @tag_lists = Tag.all
   end
 

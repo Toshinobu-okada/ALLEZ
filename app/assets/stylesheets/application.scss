@@ -27,24 +27,55 @@
 }
 
 body {
-  .background {
-    background-image: image-url('GFVL2213esports_TP_V.png');
-    background-size: cover;
-}
-
   background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
   background-blend-mode: multiply;
-  color: #ffffff;
-  font-weight: bold;
+  .top_background {
+    background-image: image-url('GFVL2213esports_TP_V.png');
+    background-size: cover;
+  }
+
 }
 
 header {
   background-image: linear-gradient(to right, #434343 0%, black 100%);
 }
 
+.container {
+  .index-container {
+    width: 900px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+    .card {
+      text-decoration: none;
+      width: 232px;
+      .card-image-top {
+        width: 232px;
+        height: 232px;
+        overflow: hidden;
+        .img {
+          max-width: 100%;
+          max_height: 232px;
+          .card-body {
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .edit-link {
   color: #ffffff;
   text-decoration: none;
+}
+
+.text-color-black {
+  color: #000000;
+}
+
+.text-color-white {
+  color: #ffffff;
 }
 
 .favorite-btn {
@@ -58,8 +89,52 @@ header {
   font-weight: bold;
 }
 
-.card-deck {
-  .card{
-    width: 232px;
-  }
+.pagination {
+  justify-content: flex-end;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.page-item.active .page-link  {
+  background-color: #ff667d;
+  border-radius: 25px;
+}
+
+.pagination>li>a:hover {
+  color: #ff3352;
+  background: #ffb6c1;
+  border-radius: 25px;
+}
+
+.item_image_btn{
+    display: none;
+}
+
+#img_field {
+  font-size: 25px;
+  font-style: inherit;
+  margin: 0 auto;
+  color: white;
+  background-color: #5bc0de;
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.nav-item {
+  height: 42px;
+}
+
+.outline {
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
 }
