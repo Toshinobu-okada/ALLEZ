@@ -64,9 +64,18 @@ header {
   }
 }
 
+
 .edit-link {
   color: #ffffff;
   text-decoration: none;
+}
+
+.text-color-black {
+  color: #000000;
+}
+
+.text-color-white {
+  color: #ffffff;
 }
 
 .favorite-btn {
@@ -100,4 +109,32 @@ header {
   color: #ff3352;
   background: #ffb6c1;
   border-radius: 25px;
+}
+
+.item_image_btn{
+    display: none;
+}
+
+#img_field {
+  font-size: 25px;
+  font-style: inherit;
+  margin: 0 auto;
+  color: white;
+  background-color: #5bc0de;
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.nav-item {
+  height: 42px;
+}
+
+.outline {
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
 }

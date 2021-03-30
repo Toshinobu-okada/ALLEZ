@@ -11,20 +11,28 @@
             </div>
           <% end %>
           <div class="card-body">
+            <div class="d-inline-block mb-2">
+              <i class="far fa-heart"><%= post_image.likes_count %></i>
+              <i class="far fa-comment"><%= post_image.post_comments.count %></i>
+            </div>
             <div class="card-title">
+              <%= link_to user_path(post_image.user), class:"edit-link text-color-black" do %>
               <div class="d-inline-block">
                 <%= attachment_image_tag post_image.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40' %>
               </div>
               <div class="d-inline-block font-weight-bold">
                 <%= post_image.user.name %>
               </div>
+              <% end %>
             </div>
             <div>
-              <p class="card-text"><%= post_image.share_comment %></p>
+              <p class="card-text", style="border: solid; border-radius:25px; padding: 5px; margin: 5px;"><%= post_image.share_comment%></p>
             </div>
             <div class="card-tag">
               <% post_image.tags.each do |tag| %>
-                <p class="card-tag-link d-inline-block"><%= link_to tag.hash_tag, search_path(search: tag.hash_tag) %></p>
+                <%= link_to search_path(search: tag.hash_tag), class:"edit-link text-color-black" do %>
+                  <p class="card-tag-link d-inline-block", style="border: solid 1px; border-radius:5px; padding: 5px; margin: 5px;"><%= tag.hash_tag %></p>
+                <% end %>
               <% end %>
             </div>
           </div>

@@ -10,26 +10,26 @@
             <input id='search-bar' type='txet' name='search' placeholder='Search...'/>
           </form>
         </div>
-        <ul class="navbar-nav ml-auto">
+        <div class="navbar-nav d-flex">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to '投稿一覧', post_images_path, class:"edit-link" %>
+              <%= link_to '投稿一覧', post_images_path, class:"fas fa-comments fa-lg edit-link outline" %>
             </li>
             <li class="nav-item">
-              <%= link_to '投稿フォーム', new_post_image_path %>
+              <%= link_to "Tweet", new_post_image_path, class:"fas fa-comment-medical fa-lg edit-link outline" %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-light" %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt fa-lg edit-link outline" %>
             </li>
             <li class="nav-item">
-            <%= link_to 'マイページ', user_path(current_user.id) %>
+            <%= link_to 'マイページ', user_path(current_user.id), class:"fas fa-user-circle fa-lg edit-link outline" %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class:"btn" %>
+              <%= link_to "ログイン", new_user_session_path, class:"fas fa-sign-in-alt fa-lg edit-link outline" %>
             </li>
           <% end %>
-        </ul>
+        </div>
       </div>
     </div>
   </nav>

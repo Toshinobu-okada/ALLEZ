@@ -1,18 +1,43 @@
-<h1>画像投稿フォーム</h1>
-<% if @post_image.errors.any? %>
-  <%= @post_image.errors.count %>件のエラーが発生しました
-  <% @post_image.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-<%= form_with model: @post_image, local:true do |f| %>
-  <h4>画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>タグ</h4>
-  <%= f.text_field :tag_name %>
-  <h4>説明</h4>
-  <%= f.text_area :share_comment %>
-  <%= f.submit '投稿' %>
-<% end %>
+<span class='container'>
+  <span class='index-container d-block d-inline-block'>
+    <div class="text-color-white">
+      <h1>Tweet</h1>
+      <% if @post_image.errors.any? %>
+        <%= @post_image.errors.count %>件のエラーが発生しました
+        <% @post_image.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+      <%= form_with model: @post_image, local:true do |f| %>
+          <h4>画像</h4>
+          <div class="form-group justify-content-center">
+            <%= f.attachment_field :image, class: 'form-control-file btn edit-link' %>
+            <div class=""><img id="preview" style="width:40%;"></div>
+          </div>
+          <h4>タイトル</h4>
+          <div class="form-group">
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <h4>タグ</h4>
+          <div class="form-group">
+            <%= f.text_field :tag_name, class: 'form-control' %>
+          </div>
+          <h4>コメント</h4>
+          <div class="form-group">
+            <%= f.text_area :share_comment, class: 'form-control' %>
+          <%= f.submit 'Tweet', class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </span>
+</span>
+
+<script>
+  $('#post_image_image').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $("#preview").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
+</script>

@@ -1,81 +1,141 @@
 <div class="tab_wrap">
-	<input id="tab1" type="radio" name="tab_btn" checked>
-	<input id="tab2" type="radio" name="tab_btn">
-	<input id="tab3" type="radio" name="tab_btn">
+  <input id="tab1" type="radio" name="tab_btn" checked>
+  <input id="tab2" type="radio" name="tab_btn">
+  <input id="tab3" type="radio" name="tab_btn">
 
-	<div class="tab_area">
-		<label class="tab_label" for="tab1">検索結果一覧</label>
-		<label class="tab_label" for="tab2">最新ツイート</label>
-		<label class="tab_label" for="tab3">話題のツイート</label>
-	</div>
-	<div class="panel_area">
-		<div id="panel1" class="tab_panel">
-			<h1>検索結果一覧</h1>
-			<% @searched_post_images.each do |searched_post_image| %>
-			  <div>
-			  	<%= link_to post_image_path(searched_post_image.id) do %>
-			  		<%= attachment_image_tag searched_post_image, :image %>
-			  	<% end %>
-			  	<p>投稿ユーザー画像：<%= attachment_image_tag searched_post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-			  	<p>ショップ名：<%= searched_post_image.title %></p>
-				  <p>説明：<%= searched_post_image.share_comment %></p>
-				  <p>ユーザーネーム：<%= searched_post_image.user.name %></p>
-				  <% searched_post_image.tags.each do |tag| %>
-				    <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
-				  <% end %>
-				</div>
-			<% end %>
-			<%= paginate @searched_post_images %>
-		</div>
+  <div class="tab_area">
+    <label class="tab_label" for="tab1">検索結果一覧</label>
+    <label class="tab_label" for="tab2">最新ツイート</label>
+    <label class="tab_label" for="tab3">話題のツイート</label>
+  </div>
+  <div class="panel_area">
+    <div id="panel1" class="tab_panel">
+      <span class='container'>
+        <span class='index-container d-block d-inline-block'>
+          <h1>検索結果一覧</h1>
+            <div class="mt-3"><%= paginate @searched_post_images %></div>
+              <span class="d-flex flex-wrap justify-content-center">
+                <% @searched_post_images.each do |searched_post_image| %>
+                <div class="card d-inline-block m-2">
+                  <div>
+                    <%= link_to post_image_path(searched_post_image.id) do %>
+                      <div class="card-image-top">
+                        <%= attachment_image_tag searched_post_image, :image, class:"img" %>
+                      </div>
+                    <% end %>
+                    <div class="card-body">
+                      <div class="d-inline-block mb-2">
+                        <i class="far fa-heart"><%= searched_post_image.likes_count %></i>
+                        <i class="far fa-comment"><%= searched_post_image.post_comments.count %></i>
+                      </div>
+                      <div class="card-title">
+                        <%= link_to user_path(searched_post_image.user), class:"edit-link text-color-black" do %>
+                        <div class="d-inline-block">
+                          <%= attachment_image_tag searched_post_image.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40' %>
+                        </div>
+                        <div class="d-inline-block font-weight-bold">
+                          <%= searched_post_image.user.name %>
+                        </div>
+                        <% end %>
+                      </div>
+                      <div>
+                        <p class="card-text", style="border: solid; border-radius:25px; padding: 5px; margin: 5px;"><%= searched_post_image.share_comment%></p>
+                      </div>
+                      <div class="card-tag">
+                        <% searched_post_image.tags.each do |tag| %>
+                          <%= link_to search_path(search: tag.hash_tag), class:"edit-link text-color-black" do %>
+                            <p class="card-tag-link d-inline-block", style="border: solid 1px; border-radius:5px; padding: 5px; margin: 5px;"><%= tag.hash_tag %></p>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </span>
+            </div>
+          <div class="mt-2"><%= paginate @searched_post_images %></div>
+        </span>
+      </span>
 
-		<div id="panel2" class="tab_panel">
-			<h1>最新ツイート</h1>
-			<% @post_image_order_by_created.each do |post_image_order_by_created| %>
-			<div>
-			  <%= link_to post_image_path(post_image_order_by_created.id) do %>
-			    <%= attachment_image_tag post_image_order_by_created, :image %>
-			  <% end %>
-			  <p>投稿ユーザー画像：<%= attachment_image_tag post_image_order_by_created.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-			  <p>ショップ名：<%= post_image_order_by_created.title %></p>
-			  <p>説明：<%= post_image_order_by_created.share_comment %></p>
-			  <p>ユーザーネーム：<%= post_image_order_by_created.user.name %></p>
-			  <% post_image_order_by_created.tags.each do |tag| %>
-			    <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
-			  <% end %>
-			</div>
-			<% end %>
-			<%= paginate @post_image_order_by_created %>
-		</div>
+    <div id="panel2" class="tab_panel">
+      <span class='container'>
+        <span class='index-container d-block d-inline-block'>
+          <h1>検索結果一覧</h1>
+            <div class="mt-3"><%= paginate @post_image_order_by_created %></div>
+              <span class="d-flex flex-wrap justify-content-center">
+                <% @post_image_order_by_created.each do |post_image_order_by_created| %>
+                <div class="card d-inline-block m-2">
+                  <div>
+                    <%= link_to post_image_path(post_image_order_by_created.id) do %>
+                      <div class="card-image-top">
+                        <%= attachment_image_tag post_image_order_by_created, :image, class:"img" %>
+                      </div>
+                    <% end %>
+                    <div class="card-body">
+                      <div class="d-inline-block mb-2">
+                        <i class="far fa-heart"><%= post_image_order_by_created.likes_count %></i>
+                        <i class="far fa-comment"><%= post_image_order_by_created.post_comments.count %></i>
+                      </div>
+                      <div class="card-title">
+                        <%= link_to user_path(post_image_order_by_created.user), class:"edit-link text-color-black" do %>
+                        <div class="d-inline-block">
+                          <%= attachment_image_tag post_image_order_by_created.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40' %>
+                        </div>
+                        <div class="d-inline-block font-weight-bold">
+                          <%= post_image_order_by_created.user.name %>
+                        </div>
+                        <% end %>
+                      </div>
+                      <div>
+                        <p class="card-text", style="border: solid; border-radius:25px; padding: 5px; margin: 5px;"><%= post_image_order_by_created.share_comment%></p>
+                      </div>
+                      <div class="card-tag">
+                        <% post_image_order_by_created.tags.each do |tag| %>
+                          <%= link_to search_path(search: tag.hash_tag), class:"edit-link text-color-black" do %>
+                            <p class="card-tag-link d-inline-block", style="border: solid 1px; border-radius:5px; padding: 5px; margin: 5px;"><%= tag.hash_tag %></p>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </span>
+            </div>
+          <div class="mt-2"><%= paginate @post_image_order_by_created %></div>
+        </span>
+      </span>
 
-		<div id="panel3" class="tab_panel">
-			<h1>話題のツイート</h1>
-			<% @post_image_order_by_like_count.each do |post_image_order_by_like_count| %>
-			<div>
-			  <%= link_to post_image_path(post_image_order_by_like_count.id) do %>
-			    <%= attachment_image_tag post_image_order_by_like_count, :image %>
-			  <% end %>
-			  <p>投稿ユーザー画像：<%= attachment_image_tag post_image_order_by_like_count.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-			  <p>ショップ名：<%= post_image_order_by_like_count.title %></p>
-			  <p>説明：<%= post_image_order_by_like_count.share_comment %></p>
-			  <p>ユーザーネーム：<%= post_image_order_by_like_count.user.name %></p>
-				  <% post_image_order_by_like_count.tags.each do |tag| %>
-				    <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
-				  <% end %>
-			</div>
-			<% end %>
-			<%= paginate @post_image_order_by_like_count %>
-		</div>
+    <div id="panel3" class="tab_panel">
+      <h1>話題のツイート</h1>
+      <% @post_image_order_by_like_count.each do |post_image_order_by_like_count| %>
+      <div>
+        <%= link_to post_image_path(post_image_order_by_like_count.id) do %>
+          <%= attachment_image_tag post_image_order_by_like_count, :image %>
+        <% end %>
+        <p>投稿ユーザー画像：<%= attachment_image_tag post_image_order_by_like_count.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+        <p>ショップ名：<%= post_image_order_by_like_count.title %></p>
+        <p>説明：<%= post_image_order_by_like_count.share_comment %></p>
+        <p>ユーザーネーム：<%= post_image_order_by_like_count.user.name %></p>
+          <% post_image_order_by_like_count.tags.each do |tag| %>
+            <p>タグ：<%#= link_to tag.tag_name, search_path(search: tag_name) %></p>
+          <% end %>
+      </div>
+      <% end %>
+      <%= paginate @post_image_order_by_like_count %>
+    </div>
 
-	</div>
+  </div>
 </div>
 
 <script>
-	$(".tab_label").on("click",function(){
-		console.log($(this))
-	var $th = $(this).index();
-	$(".tab_label").removeClass("active");
-	$(".tab_panel").removeClass("active");
-	$(this).addClass("active");
-	$(".tab_panel").eq($th).addClass("active");
-	});
+  $(".tab_label").on("click",function(){
+    console.log($(this))
+  var $th = $(this).index();
+  $(".tab_label").removeClass("active");
+  $(".tab_panel").removeClass("active");
+  $(this).addClass("active");
+  $(".tab_panel").eq($th).addClass("active");
+  });
 </script>
